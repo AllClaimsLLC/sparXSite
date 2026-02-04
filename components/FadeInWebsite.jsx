@@ -166,7 +166,7 @@ export function FadeInWebsite({ mainRef }) {
               Please fill out this form with the required information
             </p>
             <form
-              action="https://formspree.io/f/mnnbqejn"
+              action="https://formspree.io/f/mjgrbokk"
               method="POST"
               className="space-y-5"
             >

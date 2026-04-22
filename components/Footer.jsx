@@ -57,7 +57,7 @@ export default function Footer() {
               className="text-white leading-relaxed"
               style={{ fontSize: "16px" }}
             >
-              AllClaims blends technology and process design to transform claims
+              Sparx Technologies blends technology and process design to transform claims
               into faster, smarter, and more seamless experiences.
             </p>
             <div>
@@ -133,7 +133,7 @@ export default function Footer() {
               Address
             </h3>
             <p className="text-gray-300" style={{ fontSize: "14px" }}>
-              8910 W 192nd St. Unit P
+              8910 W 192nd St. Unit M
               <br />
               Mokena, IL 60448
             </p>

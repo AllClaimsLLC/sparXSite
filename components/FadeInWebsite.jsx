@@ -9,8 +9,7 @@ import OurCoreProducts from "@/components/our-core-products";
 import { Button } from "@/components/ui/button";
 import WhyChooseSparX from "@/components/why-choose-sparx";
 
-export function FadeInWebsite({ mainRef }) {
-  const [isChatOpen, setIsChatOpen] = useState(false);
+export function FadeInWebsite({ mainRef, setIsChatOpen }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -20,12 +19,6 @@ export function FadeInWebsite({ mainRef }) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const products = [
-    { name: "AccuraCore", desc: "The new standard in Contractor CRMs.", link: "https://accuracore.com" },
-    { name: "ClaimCore", desc: "The CRM that multiplies Adjustor productivity.", link: "https://claimcore.com" },
-    { name: "AccuraCam", desc: "The advanced camera that powers the future.", link: "https://accuracam.com" },
-  ];
-
   // Track scroll
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -33,7 +26,7 @@ export function FadeInWebsite({ mainRef }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     if (mainRef.current) {
       gsap.to(mainRef.current, {
         opacity: 1,
@@ -45,9 +38,9 @@ export function FadeInWebsite({ mainRef }) {
 
   // Hero fade out logic
   const heroHeight = typeof window !== "undefined" ? window.innerHeight : 800;
-  const fadeOutProgress = Math.min(scrollY / heroHeight, 1); // 0 to 1
-  const heroOpacity = 1 - fadeOutProgress * 1.2; // fade out faster
-  const heroScale = 1 - fadeOutProgress * 0.1; // zoom out slightly
+  const fadeOutProgress = Math.min(scrollY / heroHeight, 1);
+  const heroOpacity = 1 - fadeOutProgress * 1.2;
+  const heroScale = 1 - fadeOutProgress * 0.1;
   const heroVisible = fadeOutProgress < 1;
 
   return (
@@ -64,11 +57,9 @@ export function FadeInWebsite({ mainRef }) {
             zIndex: 0,
           }}
         >
-
-
           {/* Hero Content */}
           <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
-            <div style={{ marginLeft: "5%", marginTop:"10rem" }}>
+            <div style={{ marginLeft: "5%", marginTop: "10rem" }}>
               <h1
                 className="text-gray-900 leading-tight mb-6 custom-font-1"
                 style={{ fontSize: "50px", fontWeight: "400" }}
@@ -119,7 +110,10 @@ export function FadeInWebsite({ mainRef }) {
                 src="/Images/Hero-Image.png"
                 alt="Hero Illustration"
                 className="object-contain custom-image-1"
-                style={{ width: "65%", filter: "drop-shadow(0px 33px 70px rgba(255, 0, 0, 0.4))", }}
+                style={{
+                  width: "65%",
+                  filter: "drop-shadow(0px 33px 70px rgba(255, 0, 0, 0.4))",
+                }}
               />
               <img
                 src="/Icons/blue-right.png"
@@ -145,106 +139,9 @@ export function FadeInWebsite({ mainRef }) {
         </div>
         <IndustriesServed />
         <div id="contact">
-          <Footer />
+          <Footer setIsChatOpen={setIsChatOpen} />
         </div>
       </div>
-
-      {/* Chat Modal */}
-      {isChatOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl w-[90%] max-w-[600px] max-h-[90vh] overflow-y-auto relative">
-            <button
-              onClick={() => setIsChatOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-            >
-              ✕
-            </button>
-            <h3 className="text-md lg:text-md text-center text-gray-900 mb-2">
-              Registration Form
-            </h3>
-            <p className="text-gray-500 text-sm mb-6 text-center">
-              Please fill out this form with the required information
-            </p>
-            <form
-              action="https://formspree.io/f/mjgrbokk"
-              method="POST"
-              className="space-y-5"
-            >
-              {["name", "email", "phone", "company"].map((field) => (
-                <div key={field}>
-                  <label
-                    htmlFor={field}
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    {field.charAt(0).toUpperCase() + field.slice(1)}
-                  </label>
-                  <input
-                    id={field}
-                    name={field}
-                    type={field === "email" ? "email" : "text"}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                  />
-                </div>
-              ))}
-              <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">
-                  Software of Interest
-                </p>
-                {["AccuraCore", "ClaimCore", "AccuraCam"].map((s) => (
-                  <label key={s} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="software"
-                      value={s}
-                      className="h-4 w-4 text-red-500 border-gray-300 rounded"
-                    />
-                    <span className="ml-2 text-gray-700 text-[13px]">{s}</span>
-                  </label>
-                ))}
-              </div>
-              <button
-                type="submit"
-                className="w-full text-white font-bold py-3 rounded-full transition-colors duration-300 shadow-md"
-                style={{ backgroundColor: "red", fontSize: "15px" }}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Products Modal */}
-      {isProductsOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl w-[90%] max-w-[500px] relative">
-            <button
-              onClick={() => setIsProductsOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-            >
-              ✕
-            </button>
-            <h3 className="text-lg font-semibold text-center mb-4">
-              Our Products
-            </h3>
-            <div className="flex flex-col gap-4">
-              {products.map((p) => (
-                <a
-                  key={p.name}
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-lg border border-gray-300 hover:bg-red-50 transition"
-                >
-                  <h4 className="font-semibold text-red-600">{p.name}</h4>
-                  <p className="text-gray-700 text-sm">{p.desc}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

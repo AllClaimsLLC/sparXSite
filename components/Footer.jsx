@@ -1,11 +1,8 @@
-
 "use client";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export default function Footer() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function Footer({ setIsChatOpen }) {
   useEffect(() => {
     const footer = document.querySelector(".customF");
     const observer = new IntersectionObserver(
@@ -16,7 +13,7 @@ export default function Footer() {
           footer.classList.remove("in-view");
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     if (footer) observer.observe(footer);
     return () => observer.disconnect();
@@ -38,17 +35,16 @@ export default function Footer() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           {/* Left Column - Heading */}
-          <div style={{width:"fit-content"}}>
-           <h2
-  className="text-white leading-tight text-center"
-  style={{ fontSize: "60px" }}
->
-  <span className="letsWork block">Let's Work</span>
-  <span className="together block" style={{ marginLeft: "12%" }}>
-    Together
-  </span>
-</h2>
-
+          <div style={{ width: "fit-content" }}>
+            <h2
+              className="text-white leading-tight text-center"
+              style={{ fontSize: "60px" }}
+            >
+              <span className="letsWork block">Let's Work</span>
+              <span className="together block" style={{ marginLeft: "12%" }}>
+                Together
+              </span>
+            </h2>
           </div>
 
           {/* Right Column - Text and Button */}
@@ -57,12 +53,13 @@ export default function Footer() {
               className="text-white leading-relaxed"
               style={{ fontSize: "16px" }}
             >
-              Sparx Technologies blends technology and process design to transform claims
-              into faster, smarter, and more seamless experiences.
+              Sparx Technologies blends technology and process design to
+              transform claims into faster, smarter, and more seamless
+              experiences.
             </p>
             <div>
               <Button
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsChatOpen(true)}
                 className="text-black rounded-full text-sm flex items-center"
                 style={{
                   backgroundColor: "white",
@@ -190,165 +187,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Popup Modal */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl w-[90%] max-w-[600px] max-h-[90vh] overflow-y-auto relative">
-            {/* Close Button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-            >
-              ✕
-            </button>
-
-            <h3 className="text-md lg:text-md text-center text-gray-900 mb-2">
-              Registration Form
-            </h3>
-            <p className="text-gray-500 text-sm mb-6 text-center">
-              Please fill out this form with the required information
-            </p>
-
-            <form
-              action="https://formspree.io/f/mjgrbokk"
-              method="POST"
-              className="space-y-5"
-            >
-              {/* Name */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-              </div>
-
-              {/* Phone */}
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Phone
-                </label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-              </div>
-
-              {/* Company */}
-              <div>
-                <label
-                  htmlFor="company"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Company
-                </label>
-                <input
-                  id="company"
-                  name="company"
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-              </div>
-
-              {/* Software of Interest */}
-              <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">
-                  Software of Interest
-                </p>
-                <div className="space-y-2">
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="software"
-                      value="AccuraCore"
-                      className="h-4 w-4 text-red-500 border-gray-300 rounded"
-                    />
-                    <span
-                      className="ml-2 text-gray-700"
-                      style={{ fontSize: "13px" }}
-                    >
-                      AccuraCore
-                    </span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="software"
-                      value="ClaimCore"
-                      className="h-4 w-4 text-red-500 border-gray-300 rounded"
-                    />
-                    <span
-                      className="ml-2 text-gray-700"
-                      style={{ fontSize: "13px" }}
-                    >
-                      ClaimCore
-                    </span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="software"
-                      value="AccuraCam"
-                      className="h-4 w-4 text-red-500 border-gray-300 rounded"
-                    />
-                    <span
-                      className="ml-2 text-gray-700"
-                      style={{ fontSize: "13px" }}
-                    >
-                      AccuraCam
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                className="w-full text-white font-bold py-3 rounded-full transition-colors duration-300 shadow-md"
-                style={{
-                  backgroundColor: "red",
-                  padding: "10px 15px",
-                  cursor: "pointer",
-                  fontSize: "15px",
-                }}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </footer>
   );
 }

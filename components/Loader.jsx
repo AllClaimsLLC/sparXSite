@@ -45,7 +45,7 @@ export default function Loader({ onFinish }) {
         clearInterval(interval);
         setTimeout(runFinalAnimation, 200);
       }
-    }, 400);
+    }, 600);
   };
 
   const runFinalAnimation = () => {

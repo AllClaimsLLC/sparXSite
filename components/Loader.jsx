@@ -17,7 +17,7 @@ export default function Loader({ onFinish }) {
       {
         y: "0%", // end exactly at center
         opacity: 1,
-        duration: 1.8,
+        duration: 1.7,
         ease: "power3.out",
         onComplete: startFlipFlopAnimation,
       }
@@ -41,16 +41,16 @@ export default function Loader({ onFinish }) {
           : "/Logos/SparX/SparX-white-bg.png"
       );
 
-      if (count === 6) {
+      if (count === 3) {
         clearInterval(interval);
-        setTimeout(runFinalAnimation, 800);
+        setTimeout(runFinalAnimation, 200);
       }
-    }, 500);
+    }, 400);
   };
 
   const runFinalAnimation = () => {
     gsap.to(".loader-logo", {
-      duration: 1.2,
+      duration: 0.8,
       y: "-40vh",
       scale: 0.6,
       ease: "power3.inOut",

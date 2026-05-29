@@ -6,7 +6,7 @@ export default function Loader({ onFinish }) {
   const [bgColor, setBgColor] = useState(
     "linear-gradient(to right, #f1f2f4, #f3e3d4)"
   );
-  const [logo, setLogo] = useState("/Logos/SparX/Sparx-W-Light-RGB-01.png");
+  const [logo, setLogo] = useState("/Logos/SparX/SparX-white-bg.png");
   const logoContainerRef = useRef(null);
 
   useEffect(() => {
@@ -37,8 +37,8 @@ export default function Loader({ onFinish }) {
       );
       setLogo(
         flip
-          ? "/Logos/SparX/Sparx-W-Dark-RGB-01.png"
-          : "/Logos/SparX/Sparx-W-Light-RGB-01.png"
+          ? "/Logos/SparX/SparX-red-bg.png"
+          : "/Logos/SparX/SparX-white-bg.png"
       );
 
       if (count === 6) {

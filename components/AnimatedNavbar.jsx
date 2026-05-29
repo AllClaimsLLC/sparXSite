@@ -56,7 +56,7 @@ export const AnimatedNavbar = ({ onAnimationComplete, onProductClick }) => {
         {/* Logo */}
         <div className="flex items-center" ref={logoRef}>
           <img
-            src="/Logos/SparX/Sparx-W-Dark-RGB-01.png"
+            src="/Logos/SparX/header-logo.png"
             alt="SparX Logo"
             className="w-24 object-contain"
           />

@@ -80,7 +80,7 @@ export default function Footer({ setIsChatOpen }) {
           {/* Logo Column */}
           <div className="space-y-4">
             <img
-              src="/Logos/SparX/Sparx-W-Dark-RGB-01.png"
+              src="/Logos/SparX/header-logo.png"
               alt="AccuraCore Logo"
               className="w-35 object-contain"
               style={{ marginBottom: "15px" }}

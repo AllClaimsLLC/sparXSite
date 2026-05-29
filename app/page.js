@@ -9,7 +9,7 @@ import { FadeInWebsite } from "@/components/FadeInWebsite";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [navbarDone, setNavbarDone] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -33,6 +33,15 @@ export default function HomePage() {
       link: "https://accuracam.com",
     },
   ];
+
+  useEffect(() => {
+  const hasVisited = sessionStorage.getItem("loaderPlayed");
+
+  if (!hasVisited) {
+    setLoading(true);
+    sessionStorage.setItem("loaderPlayed", "true");
+  }
+}, []);
 
   useEffect(() => {
     document.body.style.overflow = loading || !navbarDone ? "hidden" : "auto";

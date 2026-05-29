@@ -41,7 +41,7 @@ export default function Loader({ onFinish }) {
           : "/Logos/SparX/SparX-white-bg.png"
       );
 
-      if (count === 3) {
+      if (count === 4) {
         clearInterval(interval);
         setTimeout(runFinalAnimation, 200);
       }
